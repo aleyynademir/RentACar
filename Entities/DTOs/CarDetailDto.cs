@@ -13,5 +13,6 @@ namespace Entities.DTOs
         public string ColorName { get; set; }
         public decimal UnitPrice { get; set; }
         public string ModelYear { get; set; }
+        public string MainImagePath { get; set; }
     }
 }

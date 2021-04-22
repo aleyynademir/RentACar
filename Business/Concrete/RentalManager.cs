@@ -49,17 +49,17 @@ namespace Business.Concrete
 
         }
 
-        [SecuredOperation("user")]
+        //[SecuredOperation("user")]
         [CacheAspect]
         public IDataResult<List<Rental>> GetAll()
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
         }
 
-        [SecuredOperation("user")]
-        public IDataResult<Rental> GetById(int id)
+        //[SecuredOperation("user")]
+        public IDataResult<Rental> GetById(int carId)
         {
-            return new SuccessDataResult<Rental>(_rentalDal.Get(r=>r.CarId == id));
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r=>r.CarId == carId));
         }
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
