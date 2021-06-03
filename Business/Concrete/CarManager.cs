@@ -42,16 +42,16 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(carDetail, Messages.GetAll);
         }
 
-        [CacheRemoveAspect("ICarService.Get")]
-        [SecuredOperation("admin")]
-        [ValidationAspect(typeof(CarValidator))]
+        //[CacheRemoveAspect("ICarService.Get")]
+       // [SecuredOperation("admin")]
+        //[ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
             _carDal.Add(car);
             return new SuccessResult(Messages.Added);
         }
 
-        [CacheRemoveAspect("ICarService.Get")]
+        //[CacheRemoveAspect("ICarService.Get")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
         {
@@ -61,18 +61,18 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Updated);
         }
 
-        [CacheRemoveAspect("ICarService.Get")]
+        //[CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
             return new SuccessResult(Messages.Deleted);
         }
 
-        [SecuredOperation("user")]
+        //[SecuredOperation("user")]
         [CacheAspect]
-        public IDataResult<Car> GetById(int id)
+        public IDataResult<Car> GetById(int carId)
         {
-            return new  SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id));
+            return new  SuccessDataResult<Car>(_carDal.Get(c => c.CarId == carId));
         }
 
         
@@ -91,14 +91,14 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.ColorId == colorId));
         }
 
-        public IDataResult<Car> GetCarDetailsById(int id)
+        public IDataResult<CarDetailDto> GetCarDetailsById(int carId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id));
+            return new SuccessDataResult<CarDetailDto>(_carDal.GetByIdDetail(carId));
         }
 
         public IDataResult<CarImagesDto> GetImagesDto(int carId)
         {
-            var result = _carDal.GetCarsDetails(carId);
+            var result = _carDal.GetByIdDetail(carId);
             var imageResult = _carImageService.GetByIdList(carId);
             if (result == null || imageResult.Success == false)
             {

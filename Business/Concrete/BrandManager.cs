@@ -20,8 +20,8 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
-        [CacheRemoveAspect("IBrandService.Get")]
-        [ValidationAspect(typeof(BrandValidator))]
+       // [CacheRemoveAspect("IBrandService.Get")]
+       // [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
             
@@ -29,27 +29,27 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Added);
         }
 
-        [CacheRemoveAspect("IBrandService.Get")]
+       // [CacheRemoveAspect("IBrandService.Get")]
         public IResult Delete(Brand brand)
         {
             _brandDal.Add(brand);
             return new SuccessResult(Messages.Deleted);
         }
 
-        [CacheAspect]
+       // [CacheAspect]
         public IDataResult<List<Brand>> GetAll()
         {
             return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
         }
 
-        [CacheAspect]
-        public IDataResult<Brand> GetById(int id)
+        //[CacheAspect]
+        public IDataResult<Brand> GetById(int brandId)
         {
-            return new SuccessDataResult<Brand>(_brandDal.Get(c => c.BrandId == id));
+            return new SuccessDataResult<Brand>(_brandDal.Get(c => c.BrandId == brandId));
         }
 
-        [CacheRemoveAspect("IBrandService.Get")]
-        [ValidationAspect(typeof(BrandValidator))]
+        //[CacheRemoveAspect("IBrandService.Get")]
+        //[ValidationAspect(typeof(BrandValidator))]
         public IResult Update(Brand brand)
         {
             

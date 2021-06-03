@@ -40,7 +40,7 @@ namespace DataAccess.Concrete.EntityFramework
 
 
 
-        public CarDetailDto GetCarsDetails(int carId)
+        public CarDetailDto GetByIdDetail(int carId)
         {
             using (RentACarContext context = new RentACarContext())
             {
